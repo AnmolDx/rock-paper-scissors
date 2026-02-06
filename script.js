@@ -1,79 +1,57 @@
 function getComputerChoise() {
-   let randNum = Math.floor(Math.random()*3+1)
+   let randNum = Math.floor(Math.random() * 3 + 1)
 
-   if(randNum === 1){
+   if (randNum === 1) {
       return "rock"
-   }else if(randNum === 2){
+   } else if (randNum === 2) {
       return "paper"
-   }else if(randNum === 3){
+   } else if (randNum === 3) {
       return "scissors"
    }
 }
 
-function getHumanChoise(){
+function getHumanChoise() {
    let UserChoise = prompt("Enter your choice(Rock/Paper/Scissors)")
    UserChoise = UserChoise.toLowerCase()
    return UserChoise
 }
 
-let computerChoise = getComputerChoise();
-let humanChoise = getHumanChoise();
-
-function playGame(){
+function playGame() {
 
    let humanScore = 0;
    let computerScore = 0;
+   let computerChoise = getComputerChoise();
+   let humanChoise = getHumanChoise();
 
    function playRound(humanChoise, computerChoise) {
-      if(humanChoise === "rock" && computerChoise === "rock"){
-         console.log("Its a tie!")
-      } else if(humanChoise === "paper" && computerChoise === "paper") {
-         console.log("Its a tie!")
-      } else if(humanChoise === "scissors" && computerChoise === "scissors") {
-         console.log("Its a tie!")
+
+      if (humanChoise === "rock" && computerChoise === "scissors" || 
+         humanChoise === "scissors" && computerChoise === "paper" || 
+         humanChoise === "paper" && computerChoise === "rock") {
+         console.log(`You Win ${humanChoise} beats ${computerChoise}`);
+         humanScore++;
       }
-      
-      else if(humanChoise === "rock" && computerChoise === "scissors") {
-         console.log(`You Win ${humanChoise} beats ${computerChoise}`);
-         humanScore = humanScore + 1;
-         console.log("Your Score is ", humanScore)
-         console.log("Computer score is ", computerScore)
-      } else if(humanChoise === "scissors" && computerChoise === "paper") {
-         console.log(`You Win ${humanChoise} beats ${computerChoise}`);
-         humanScore = humanScore + 1;
-         console.log("Your Score is ", humanScore)
-         console.log("Computer score is ", computerScore)
-      } else if(humanChoise === "paper" && computerChoise === "rock") {
-         console.log(`You Win ${humanChoise} beats ${computerChoise}`);
-         humanScore = humanScore + 1;
-         console.log("Your Score is ", humanScore)
-         console.log("Computer score is ", computerScore)
+
+      else if (humanChoise === "rock" && computerChoise === "paper" || 
+         humanChoise === "paper" && computerChoise === "scissors" || 
+         humanChoise === "scissors" && computerChoise === "rock") {
+         console.log(`You Lose ${computerChoise} beats ${humanChoise}`);
+         computerScore++;
       }
-      
-      else if(humanChoise === "rock" && computerChoise === "paper") {
-         console.log(`You Lose ${computerChoise} beats ${humanChoise}`);
-         computerScore = computerScore + 1;
-         console.log("Your Score is ", humanScore)
-         console.log("Computer score is ", computerScore)
-      }else if(humanChoise === "paper" && computerChoise === "scissors") {
-         console.log(`You Lose ${computerChoise} beats ${humanChoise}`);
-         computerScore = computerScore + 1;
-         console.log("Your Score is ", humanScore)
-         console.log("Computer score is ", computerScore)
-      }else if(humanChoise === "scissors" && computerChoise === "rock") {
-         console.log(`You Lose ${computerChoise} beats ${humanChoise}`);
-         computerScore = computerScore + 1;
-         console.log("Your Score is ", humanScore)
-         console.log("Computer score is ", computerScore)
+
+      else{
+         console.log("Its a Tie! both have selected", humanChoise)
       }
    }
-
-   playRound(humanChoise, computerChoise)
-   playRound(humanChoise, computerChoise)
-   playRound(humanChoise, computerChoise)
-   playRound(humanChoise, computerChoise)
-   playRound(humanChoise, computerChoise)
-
+   
+   playRound(humanChoise,computerChoise)
+   playRound(humanChoise,computerChoise)
+   playRound(humanChoise,computerChoise)
+   playRound(humanChoise,computerChoise)
+   playRound(humanChoise,computerChoise)
+   
+   console.log("Your score is ", humanScore)
+   console.log("Computer score is ", computerScore)
 }
 
 playGame()
