@@ -10,65 +10,75 @@ function getComputerChoise() {
    }
 }
 
-function getHumanChoise() {
-   let UserChoise = prompt("Enter your choice(Rock/Paper/Scissors)")
-   UserChoise = UserChoise.toLowerCase()
-   return UserChoise
-}
+// function getHumanChoise() {
+//    let UserChoise = prompt("Enter your choice(Rock/Paper/Scissors)")
+//    UserChoise = UserChoise.toLowerCase()
+//    return UserChoise
+// }  
 
+let humanScore = 0;
+let computerScore = 0;
+
+
+function playRound(humanChoise, computerChoise) {
+
+   if ((humanChoise === "rock" && computerChoise === "scissors") ||
+      (humanChoise === "scissors" && computerChoise === "paper") ||
+      (humanChoise === "paper" && computerChoise === "rock")) {
+      results.textContent = `You Win ${humanChoise} beats ${computerChoise}`;
+      humanScore++;
+   }
+
+   else if ((humanChoise === "rock" && computerChoise === "paper") ||
+      (humanChoise === "paper" && computerChoise === "scissors") ||
+      (humanChoise === "scissors" && computerChoise === "rock")) {
+      results.textContent = `You Lose ${computerChoise} beats ${humanChoise}`;
+      computerScore++;
+   }
+
+   else {
+      results.textContent = `Its a Tie! both have selected ${humanChoise}`
+   }
+
+
+   if (humanScore === 5) {
+      results.style.color = "green"
+      results.textContent = "You Won the game"
+      humanScore = 0
+   } else if (computerScore === 5) {
+      results.style.color = "red"
+      results.textContent = "Computer won the game"
+      computerScore = 0
+   }
+}
 function playGame() {
-   let humanScore = 0;
-   let computerScore = 0;
+   //    playRound(humanChoise, computerChoise)
+   //    computerChoise = getComputerChoise();
+   //    humanChoise = getHumanChoise();
+   //    playRound(humanChoise, computerChoise)
+   //    computerChoise = getComputerChoise();
+   //    humanChoise = getHumanChoise();
+   //    playRound(humanChoise, computerChoise)
+   //    computerChoise = getComputerChoise();
+   //    humanChoise = getHumanChoise();
+   //    playRound(humanChoise, computerChoise)
+   //    computerChoise = getComputerChoise();
+   //    humanChoise = getHumanChoise();
+   //    playRound(humanChoise, computerChoise)
 
-
-   function playRound(humanChoise, computerChoise) {
-
-      if ((humanChoise === "rock" && computerChoise === "scissors") ||
-         (humanChoise === "scissors" && computerChoise === "paper") ||
-         (humanChoise === "paper" && computerChoise === "rock")) {
-         console.log(`You Win ${humanChoise} beats ${computerChoise}`);
-         humanScore++;
-      }
-
-      else if ((humanChoise === "rock" && computerChoise === "paper") ||
-         (humanChoise === "paper" && computerChoise === "scissors") ||
-         (humanChoise === "scissors" && computerChoise === "rock")) {
-         console.log(`You Lose ${computerChoise} beats ${humanChoise}`);
-         computerScore++;
-      }
-
-      else {
-         console.log("Its a Tie! both have selected", humanChoise)
-      }
-   }
-
-   let computerChoise = getComputerChoise();
-   let humanChoise = getHumanChoise();
-   playRound(humanChoise, computerChoise)
-   computerChoise = getComputerChoise();
-   humanChoise = getHumanChoise();
-   playRound(humanChoise, computerChoise)
-   computerChoise = getComputerChoise();
-   humanChoise = getHumanChoise();
-   playRound(humanChoise, computerChoise)
-   computerChoise = getComputerChoise();
-   humanChoise = getHumanChoise();
-   playRound(humanChoise, computerChoise)
-   computerChoise = getComputerChoise();
-   humanChoise = getHumanChoise();
-   playRound(humanChoise, computerChoise)
-
-   console.log("----------------------------------------------------")
-   if(humanScore > computerScore){
-      console.log("You Won the game")
-   }else if (humanScore < computerScore) {
-      console.log("Computer won the game")
-   }else{
-      console.log("Its a Tie! No one won the game")
-   }
-
-   console.log("Your score is ", humanScore)
-   console.log("Computer score is ", computerScore)
 }
 
-playGame()
+// playGame()
+
+const results = document.getElementById("results")
+const buttons = document.querySelectorAll("button")
+buttons.forEach(btn => {
+   btn.addEventListener("click", (e) => {
+      let playerSelection = e.target.textContent.toLowerCase()
+      let computerChoise = getComputerChoise();
+      playRound(playerSelection, computerChoise)
+
+
+   })
+})
+
